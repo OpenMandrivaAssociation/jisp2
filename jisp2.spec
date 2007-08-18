@@ -32,11 +32,11 @@
 %define jisp_version 2.5.1
 %define gcj_support 1
 
-Summary:        The Java Indexed Serialization Package
 Name:           jisp2
 Version:        2.5.1
-Release:        %mkrel 4.0.2
+Release:        %mkrel 4.0.3
 Epoch:          0
+Summary:        Java Indexed Serialization Package
 License:        GPL-like
 URL:            http://www.coyotegulch.com/products/jisp/
 Group:          Development/Java
@@ -44,7 +44,6 @@ Source0:        jisp-%{version}-source.tar.gz
 Patch0:         Makefile.diff
 # jisp-3.0.0 won't work with jakarta-turbine-jcs
 BuildRequires:  jpackage-utils >= 0:1.7
-BuildRequires:  /usr/bin/make
 Requires:  jpackage-utils >= 0:1.7
 Provides:  hibernate_in_process_cache = %{epoch}:%{version}-%{release}
 %if %{gcj_support}
@@ -55,7 +54,7 @@ BuildRequires:  java-gcj-compat-devel
 BuildArch:      noarch
 BuildRequires:  java-devel
 %endif
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Jisp uses B-Tree and hash indexes for keyed access to variable-length 
@@ -77,17 +76,15 @@ Javadoc for %{name}.
 
 %prep
 %setup -q -n jisp-%{version}
-
-%patch0 
+%patch0 -p0
 
 %build
-export JAVA_HOME=%{_jvmdir}/java-1.5.0-gcj
-%{make}
-%{make} jars
-%{make} docs
+export JAVA_HOME=%{java_home}
+%{__make}
+%{__make} jars
+%{__make} docs
 
 %{__perl} -pi -e 's/\r$//g' svfl.txt
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
