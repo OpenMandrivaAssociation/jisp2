@@ -41,7 +41,7 @@ License:        GPL-like
 URL:            http://www.coyotegulch.com/products/jisp/
 Group:          Development/Java
 Source0:        jisp-%{version}-source.tar.gz
-Patch0:         Makefile.diff
+Patch0:         jisp2-2.5.1-makefile.patch
 # jisp-3.0.0 won't work with jakarta-turbine-jcs
 BuildRequires:  jpackage-utils >= 0:1.7
 Requires:  jpackage-utils >= 0:1.7
@@ -76,15 +76,12 @@ Javadoc for %{name}.
 
 %prep
 %setup -q -n jisp-%{version}
-%patch0 -p0
+%{__perl} -pi -e 's/\r$//g' svfl.txt
+%patch0 -p1
 
 %build
-export JAVA_HOME=%{java_home}
-%{__make}
-%{__make} jars
-%{__make} docs
-
-%{__perl} -pi -e 's/\r$//g' svfl.txt
+export CLASSPATH=
+%{__make} JAVA=%{java} JAVAC=%{javac} JCFLAGS="-classpath . -nowarn" JAR=%{jar} JAVADOC=%{javadoc} JispDemo jars docs
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -102,9 +99,10 @@ ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
 
 # demo
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}/lib
-cp jisp-demo.jar $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}/lib
-cp *.java $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}
-cp *.txt $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}
+cp -a jisp-demo.jar $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}/lib
+# XXX: could thie be right?
+cp -a *.java $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}
+cp -a *.txt $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}
 
 # hibernate_in_process_cache ghost symlink
 ln -s %{_sysconfdir}/alternatives \
