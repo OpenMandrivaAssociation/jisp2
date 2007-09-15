@@ -34,7 +34,7 @@
 
 Name:           jisp2
 Version:        2.5.1
-Release:        %mkrel 4.0.3
+Release:        %mkrel 4.0.4
 Epoch:          0
 Summary:        Java Indexed Serialization Package
 License:        GPL-like
@@ -47,8 +47,6 @@ BuildRequires:  jpackage-utils >= 0:1.7
 Requires:  jpackage-utils >= 0:1.7
 Provides:  hibernate_in_process_cache = %{epoch}:%{version}-%{release}
 %if %{gcj_support}
-Requires(post): java-gcj-compat
-Requires(postun): java-gcj-compat
 BuildRequires:  java-gcj-compat-devel
 %else
 BuildArch:      noarch
