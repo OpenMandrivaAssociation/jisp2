@@ -34,7 +34,7 @@
 
 Name:           jisp2
 Version:        2.5.1
-Release:        %mkrel 4.0.4
+Release:        %mkrel 4.0.5
 Epoch:          0
 Summary:        Java Indexed Serialization Package
 License:        GPL-like
@@ -43,7 +43,7 @@ Group:          Development/Java
 Source0:        jisp-%{version}-source.tar.gz
 Patch0:         jisp2-2.5.1-makefile.patch
 # jisp-3.0.0 won't work with jakarta-turbine-jcs
-BuildRequires:  jpackage-utils >= 0:1.7
+BuildRequires:  java-rpmbuild >= 0:1.7
 Requires:  jpackage-utils >= 0:1.7
 Provides:  hibernate_in_process_cache = %{epoch}:%{version}-%{release}
 %if %{gcj_support}
