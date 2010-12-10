@@ -34,7 +34,7 @@
 
 Name:           jisp2
 Version:        2.5.1
-Release:        %mkrel 4.0.6
+Release:        %mkrel 4.0.7
 Epoch:          0
 Summary:        Java Indexed Serialization Package
 License:        GPL-like
