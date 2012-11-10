@@ -1,0 +1,38 @@
+--- jisp-2.5.1/Makefile.orig	2003-03-31 04:18:39.000000000 +0200
++++ jisp-2.5.1/Makefile	2007-08-18 22:56:03.000000000 +0200
+@@ -1,22 +1,28 @@
++JAVA=java
++JAVAC=javac
++JCFLAGS=-classpath .
++JAR=jar
++JAVADOC=javadoc
++
+ JispDemo : JispDemo.java
+ 	-rm com/coyotegulch/jisp/*.class
+-	javac -O com/coyotegulch/jisp/*.java
++	$(JAVAC) $(JCFLAGS) -source 1.4 com/coyotegulch/jisp/*.java
+ 	-rm *.class
+-	javac -O JispDemo.java
++	$(JAVAC) $(JCFLAGS) -source 1.4 JispDemo.java
+ 	
+ JispLoadTest : JispLoadTest.java
+-	javac -O JispLoadTest.java
++	$(JAVAC) $(JCFLAGS) -source 1.4 JispLoadTest.java
+         
+ profile: JispLoadTest
+-	java -Xrunhprof:cpu=samples,file=JispLoadTest.profile JispLoadTest
++	$(JAVA) -Xrunhprof:cpu=samples,file=JispLoadTest.profile JispLoadTest
+         
+ jars:
+ 	-rm -rf *.jar
+-	jar -cfm jisp-demo.jar MANIFEST.MF *.class svfl.txt
+-	jar -cfm jisp.jar JISPJAR.MF com/coyotegulch/jisp/*.class svfl.txt
++	$(JAR) -cfm jisp-demo.jar MANIFEST.MF *.class svfl.txt
++	$(JAR) -cfm jisp.jar JISPJAR.MF com/coyotegulch/jisp/*.class svfl.txt
+ 	
+ docs:
+-	javadoc -d docs com.coyotegulch.jisp
++	$(JAVADOC) -source 1.4 -d docs com.coyotegulch.jisp
+ 	
+ clean:
+ 	-rm -rf *.class
