@@ -150,3 +150,53 @@ update-alternatives --install %{_javadir}/hibernate_in_process_cache.jar \
 %defattr(0644,root,root,0755)
 %doc %{_javadocdir}/%{name}-%{version}
 %doc %{_javadocdir}/%{name}
+
+
+%changelog
+* Fri Dec 10 2010 Oden Eriksson <oeriksson@mandriva.com> 0:2.5.1-4.0.7mdv2011.0
++ Revision: 619829
+- the mass rebuild of 2010.0 packages
+
+* Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 0:2.5.1-4.0.6mdv2010.0
++ Revision: 429626
+- rebuild
+
+* Wed Jan 02 2008 Olivier Blin <oblin@mandriva.com> 0:2.5.1-4.0.5mdv2009.0
++ Revision: 140829
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+  + Anssi Hannula <anssi@mandriva.org>
+    - buildrequire java-rpmbuild, i.e. build with icedtea on x86(_64)
+
+* Sat Sep 15 2007 Anssi Hannula <anssi@mandriva.org> 0:2.5.1-4.0.4mdv2008.0
++ Revision: 87436
+- rebuild to filter out autorequires of GCJ AOT objects
+- remove unnecessary Requires(post) on java-gcj-compat
+
+* Sat Aug 18 2007 David Walluck <walluck@mandriva.org> 0:2.5.1-4.0.3mdv2008.0
++ Revision: 66453
+- fix build
+- do not use parallel make
+- Import jisp2
+
+
+
+
+* Thu Jul 26 2007 Alexander Kurtakov <akurtakov@active-lynx.com> - 0:2.5.1-4.0.1mdv2008.0
+- Adapt for Mandriva
+
+* Thu Jan 05 2006 Fernando Nasser <fnasser@redhat.com> - 0:2.5.1-4jpp
+- First JPP 1.7 build
+
+* Sun Aug 23 2004 Randy Watler <rwatler at finali.com> - 0:2.5.1-3jpp
+- Rebuild with ant-1.6.2
+
+* Fri Jul 02 2004 Ralph Apel <r.apel at r-apel.de> - 0:2.5.1-2jpp
+- Relax jpackage-utils versioned dependency
+- Provide hibernate_in_process_cache and do update-alternatives, prio 30
+
+* Tue Jan 27 2004 Ralph Apel <r.apel at r-apel.de> - 0:2.5.1-1jpp
+- First JPackage release
