@@ -38,7 +38,7 @@ Release:        4.0.8
 Epoch:          0
 Summary:        Java Indexed Serialization Package
 License:        GPL-like
-URL:            http://www.coyotegulch.com/products/jisp/
+URL:            https://www.coyotegulch.com/products/jisp/
 Group:          Development/Java
 Source0:        jisp-%{version}-source.tar.gz
 Patch0:         jisp2-2.5.1-makefile.patch
